@@ -56,7 +56,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
         this.results = new Result();
 
         // Create adapter passing the list of articles
-        this.adapter = new NYTArticleAdapter(this.results);
+        this.adapter = new NYTArticleAdapter(); // je supprime this.result
 
         // Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.adapter);
@@ -96,7 +96,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     @Override
     public void onResponse(@Nullable Result results) {
         // When getting response, we update UI
-        if (results != null) this.adapter.updateCallRetrofitNews();
+        this.adapter.updateCallRetrofitNews(results);
     }
 
     @Override
@@ -123,11 +123,11 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     //  UPDATE UI
     // ------------------
 
-    private void updateUI(List<Article> articles) {
+    /*private void updateUI(List<Article> articles) {
         articles.addAll(articles);
         adapter.notifyDataSetChanged();
         //swipeRefreshLayout.setRefreshing(false);
-    }
+    }*/
 
 
     private void updateUIWhenStartingHTTPRequest(){

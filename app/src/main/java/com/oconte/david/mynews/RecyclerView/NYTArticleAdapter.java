@@ -17,8 +17,8 @@ public class NYTArticleAdapter extends RecyclerView.Adapter<NYTArticleViewHolder
     private Result results;
 
 
-    public NYTArticleAdapter(Result results) {
-        this.results = results;
+    public NYTArticleAdapter() { //Result results
+        //this.results = results;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class NYTArticleAdapter extends RecyclerView.Adapter<NYTArticleViewHolder
 
     // il faut que tu créer une méthode dans ton adapter pour mettre a jour la valeur lors de la reception du call Retrofit (onResponse)
 
-    public void updateCallRetrofitNews(Result articles) {
-        this.results = articles;
+    public void updateCallRetrofitNews(Result results) {
+        this.results = results;
         this.notifyDataSetChanged();
     }
 }
