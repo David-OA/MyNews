@@ -3,10 +3,11 @@ package com.oconte.david.mynews;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
-    @SerializedName("articles")
+    @SerializedName("results")
     @Expose
-    public List<Article> articles;
+    public List<Article> articles = new ArrayList<Article>();
 }

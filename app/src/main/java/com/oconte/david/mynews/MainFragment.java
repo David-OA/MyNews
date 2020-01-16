@@ -96,7 +96,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     @Override
     public void onResponse(@Nullable Result results) {
         // When getting response, we update UI
-        if (results != null) this.updateUIWithListOfresults(results.articles);
+        if (results != null) this.adapter.updateCallRetrofitNews();
     }
 
     @Override
