@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.oconte.david.mynews.Article;
 import com.oconte.david.mynews.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,5 +26,11 @@ public class NYTArticleViewHolder extends RecyclerView.ViewHolder {
 
     public void updateWithNYTArticle (Article article) {
         this.textView.setText(article.getAbstract());
+        Picasso.get().load(getFirstUrl(article)).into(this.imageView);
+    }
+
+    public String getFirstUrl(Article article) {
+        String url = article.getUrl();
+        return url;
     }
 }
