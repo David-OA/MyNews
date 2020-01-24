@@ -23,6 +23,5 @@ public class NYTArticleViewHolder extends RecyclerView.ViewHolder {
 
     public void updateWithNYTArticle (Article article) {
         this.textView.setText(article.getAbstract());
-        //this.imageView.
     }
 }

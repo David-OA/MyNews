@@ -9,5 +9,5 @@ import java.util.List;
 public class Result {
     @SerializedName("results")
     @Expose
-    public List<Article> articles = new ArrayList<Article>();
+    public List<Article> articles = new ArrayList<>();
 }

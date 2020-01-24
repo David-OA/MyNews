@@ -188,15 +188,15 @@ public class Article {
 
     public void setGeoFacet(List<Object> geoFacet) {
         this.geoFacet = geoFacet;
-    }
+    }*/
 
-    /*public List<Multimedium> getMultimedia() {
+    public List<Multimedium> getMultimedia() {
         return multimedia;
     }
 
     public void setMultimedia(List<Multimedium> multimedia) {
         this.multimedia = multimedia;
-    }*/
+    }
 
     public String getShortUrl() {
         return shortUrl;

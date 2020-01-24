@@ -1,6 +1,7 @@
 package com.oconte.david.mynews.RecyclerView;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +15,13 @@ import java.util.List;
 
 public class NYTArticleAdapter extends RecyclerView.Adapter<NYTArticleViewHolder> {
 
-    private Result results;
+    private Result results = new Result();
 
 
-    public NYTArticleAdapter() { //Result results
-        //this.results = results;
+    public NYTArticleAdapter() {
     }
 
+    @NonNull
     @Override
     public NYTArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -32,7 +33,7 @@ public class NYTArticleAdapter extends RecyclerView.Adapter<NYTArticleViewHolder
     }
 
     @Override
-    public void onBindViewHolder(NYTArticleViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull NYTArticleViewHolder viewHolder, int position) {
         viewHolder.updateWithNYTArticle(this.results.articles.get(position));
     }
 
@@ -41,7 +42,6 @@ public class NYTArticleAdapter extends RecyclerView.Adapter<NYTArticleViewHolder
         return this.results.articles.size();
     }
 
-    // il faut que tu créer une méthode dans ton adapter pour mettre a jour la valeur lors de la reception du call Retrofit (onResponse)
 
     public void updateCallRetrofitNews(Result results) {
         this.results = results;

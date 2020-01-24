@@ -26,9 +26,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     //@BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
     // FOR DATA
-    //private Article articles;
     private NYTArticleAdapter adapter;
-    private Result results;
 
     public MainFragment() { }
 
@@ -53,7 +51,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     // Configure RecyclerView, Adapter, LayoutManager
     private void configureRecyclerView() {
         // Reset list
-        this.results = new Result();
+        //this.results = new Result();
 
         // Create adapter passing the list of articles
         this.adapter = new NYTArticleAdapter(); // je supprime this.result
