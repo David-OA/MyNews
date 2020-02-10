@@ -1,5 +1,7 @@
 package com.oconte.david.mynews;
 
+import com.oconte.david.mynews.Models.Result;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

@@ -9,15 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.oconte.david.mynews.Models.Result;
 import com.oconte.david.mynews.RecyclerView.NYTArticleAdapter;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainFragment extends Fragment implements NYTCalls.Callbacks {
 

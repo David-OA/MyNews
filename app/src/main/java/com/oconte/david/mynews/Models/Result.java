@@ -1,4 +1,4 @@
-package com.oconte.david.mynews;
+package com.oconte.david.mynews.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

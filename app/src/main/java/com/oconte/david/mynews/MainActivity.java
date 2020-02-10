@@ -1,5 +1,6 @@
 package com.oconte.david.mynews;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,9 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.material.tabs.TabLayout;
 import com.oconte.david.mynews.OptionMenu.AboutActivity;
 import com.oconte.david.mynews.OptionMenu.HelpActivity;
 
+import androidx.viewpager.widget.ViewPager;
 import butterknife.ButterKnife;
 import butterknife.BindView;
 
@@ -17,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private MainFragment mainFragment;
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.tabLayout) TabLayout tabLayout;
+    @BindView(R.id.pager) ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +30,21 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         this.configureToolbar();
+
+        this.configureTabLayout();
+
         this.configureAndShowMainFragment();
     }
 
     // -------------------
     // CONFIGURATION
     // -------------------
+
+
+    private void configureAndShowMainFragmentWithViewPager() {
+        //viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        tabLayout.setupWithViewPager(viewPager);
+    }
 
     private void configureAndShowMainFragment() {
 
@@ -51,6 +65,25 @@ public class MainActivity extends AppCompatActivity {
         //afficher le bouton retour
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    /**
+     * All for the TabLayout
+     */
+    @SuppressLint("ResourceType")
+    protected void configureTabLayout() {
+        // Define its gravity and its mode
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
+        // Define the color to use
+        tabLayout.setTabTextColors(getResources().getColorStateList(R.drawable.color_tablayout_selector));
+
+        // Populate your TabLayout
+        tabLayout.addTab(tabLayout.newTab().setText("TOP STORIES"));
+        tabLayout.addTab(tabLayout.newTab().setText("MOST POPULAR"));
+        tabLayout.addTab(tabLayout.newTab().setText("SPORTS"));
+
     }
 
     /**

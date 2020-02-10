@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.oconte.david.mynews.R;
-import com.oconte.david.mynews.Result;
+import com.oconte.david.mynews.Models.Result;
 
 public class NYTArticleAdapter extends RecyclerView.Adapter<NYTArticleViewHolder> {
 

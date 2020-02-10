@@ -1,5 +1,7 @@
 package com.oconte.david.mynews;
 
+import com.oconte.david.mynews.Models.Result;
+
 import androidx.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
