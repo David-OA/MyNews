@@ -1,19 +1,25 @@
 package com.oconte.david.mynews;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.oconte.david.mynews.Calls.NYTCalls;
+import com.oconte.david.mynews.Calls.NYTCallsMostPopular;
+import com.oconte.david.mynews.Calls.NYTCallsSports;
+import com.oconte.david.mynews.Models.Article;
 import com.oconte.david.mynews.Models.Result;
 import com.oconte.david.mynews.RecyclerView.NYTArticleAdapter;
+import com.oconte.david.mynews.WebView.ItemClickSupport;
+import com.oconte.david.mynews.WebView.WebViewActivity;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,16 +37,19 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
 
     Result result;
 
+
+
     public MainFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
-
         this.configureRecyclerView();
 
         this.executeHttpRequestWithRetrofit();
+
+        this.configureOnClickRecyclerView();
 
         return view;
     }
@@ -58,7 +67,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     private void configureRecyclerView() {
 
         // Create adapter passing the list of articles
-        this.adapter = new NYTArticleAdapter(); // je supprime this.result
+        this.adapter = new NYTArticleAdapter();
 
         // Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.adapter);
@@ -67,37 +76,76 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-        /*private void configureSwipeRefreshLayout(){
-            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    executeHttpRequestWithRetrofit();
-                }
-            });
-        }*/
+    // -----------------
+    // ACTION
+    // -----------------
+
+    private void configureOnClickRecyclerView(){
+        ItemClickSupport.addTo(recyclerView, R.layout.activity_web_view)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        result.articles.get(position);
+
+
+                        Intent intent = new Intent(getContext(),WebViewActivity.class);
+                        intent.putExtra("url", Article.class);
+
+                        startActivity(intent);
+                    }
+                });
+    }
+
+
+
+
+    /*private void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                executeHttpRequestWithRetrofit();
+            }
+        });
+    }*/
 
     // -----------------
     // ACTIONS
     // -----------------
 
-    /*@OnClick(R.id.fragment_main_button)
-    public void submit(View view) {
-        this.executeHttpRequestWithRetrofit(); //add WithRetrofit
-    }*/
+    //@OnClick(R.id.fragment_main_button)
+    //public void submit(View view) {
+    //    this.executeHttpRequestWithRetrofit(); //add WithRetrofit
+    //}
+
+    //private void configureClickOnTabLayout() {
+    //   if ()
+    //}
+
+
+
+
+
+
 
     // -----------------
-    // HTTP REQUEST Retrofit Way and RxJAVA
+    // HTTP REQUEST Retrofit
     // -----------------
     private void executeHttpRequestWithRetrofit() {
         //this.updateUIWhenStartingHTTPRequest();
-        NYTCalls.fetchResult(this, "movies");
+        NYTCalls.getTopStories(this, "movies");
+    }
 
+    private void executeHttpRequestWithRetrofitSports() {
+        NYTCallsSports.getSports(this, "movies");
+    }
+
+    private void executeHttpRequestWithRetrofitMostPopular() {
+        NYTCallsMostPopular.getMostPopular(this, "movies");
     }
 
 
     @Override
     public void onResponse(@Nullable Result results) {
-        // When getting response, we update UI
         this.result = results;
         this.adapter.updateCallRetrofitNews(results);
     }
@@ -107,20 +155,6 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
         // When getting error, we update UI
         //this.updateUIWhenStopingHTTPRequest("An error happened !");
     }
-
-
-        /*@Override
-        public void onPreExecute() {
-            this.updateUIWhenStartingHTTPRequest();
-        }
-
-        @Override
-        public void doInBackground() {}
-
-        @Override
-        public void onPostExecute(String json) {
-            this.updateUIWhenStopingHTTPRequest(json);
-        }*/
 
     // ------------------
     //  UPDATE UI
@@ -132,21 +166,11 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
         //swipeRefreshLayout.setRefreshing(false);
     }*/
 
-
     /*private void updateUIWhenStartingHTTPRequest(){
         this.textView.setText("Downloading...");
     }
 
     private void updateUIWhenStopingHTTPRequest(String response){
         this.textView.setText(response);
-    }
-
-    // Update UI showing only name of articles
-    private void updateUIWithListOfresults(List<Article> articles) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Article article : articles) {
-            stringBuilder.append("-"+ article.getAbstract()+"\n");
-        }
-        updateUIWhenStopingHTTPRequest(stringBuilder.toString());
     }*/
 }

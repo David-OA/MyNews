@@ -3,10 +3,9 @@ package com.oconte.david.mynews.Calls;
 import com.oconte.david.mynews.Models.Result;
 import com.oconte.david.mynews.NYTService;
 
-import androidx.annotation.Nullable;
-
 import java.lang.ref.WeakReference;
 
+import androidx.annotation.Nullable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,7 +19,7 @@ public class NYTCalls {
     }
 
     // Public methode to start fetching
-    public static void fetchResult(Callbacks callbacks, String section) {
+    public static void getTopStories(Callbacks callbacks, String section) {
 
         // weak reference to callback (avoid memory leaks)
         final WeakReference<Callbacks> callbacksWeakReference = new WeakReference<Callbacks>(callbacks);
