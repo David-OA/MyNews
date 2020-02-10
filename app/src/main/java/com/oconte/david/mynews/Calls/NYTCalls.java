@@ -1,6 +1,7 @@
-package com.oconte.david.mynews;
+package com.oconte.david.mynews.Calls;
 
 import com.oconte.david.mynews.Models.Result;
+import com.oconte.david.mynews.NYTService;
 
 import androidx.annotation.Nullable;
 
