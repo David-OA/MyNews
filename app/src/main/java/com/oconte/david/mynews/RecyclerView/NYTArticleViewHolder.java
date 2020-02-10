@@ -1,6 +1,6 @@
 package com.oconte.david.mynews.RecyclerView;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,8 +8,6 @@ import android.widget.TextView;
 import com.oconte.david.mynews.Article;
 import com.oconte.david.mynews.R;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

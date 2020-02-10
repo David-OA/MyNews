@@ -1,10 +1,11 @@
 package com.oconte.david.mynews;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +22,16 @@ import butterknife.OnClick;
 public class MainFragment extends Fragment implements NYTCalls.Callbacks {
 
     // FOR DESIGN
-    @BindView(R.id.fragment_main_textview) TextView textView;
+    //@BindView(R.id.fragment_main_textview) TextView textView;
     @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
     //@BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
     // FOR DATA
     private NYTArticleAdapter adapter;
+
+    Context context;
+
+    Result result;
 
     public MainFragment() { }
 
@@ -34,8 +39,11 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+
         this.configureRecyclerView();
+
         this.executeHttpRequestWithRetrofit();
+
         return view;
     }
 
@@ -50,8 +58,6 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
 
     // Configure RecyclerView, Adapter, LayoutManager
     private void configureRecyclerView() {
-        // Reset list
-        //this.results = new Result();
 
         // Create adapter passing the list of articles
         this.adapter = new NYTArticleAdapter(); // je supprime this.result
@@ -76,16 +82,16 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     // ACTIONS
     // -----------------
 
-    @OnClick(R.id.fragment_main_button)
+    /*@OnClick(R.id.fragment_main_button)
     public void submit(View view) {
         this.executeHttpRequestWithRetrofit(); //add WithRetrofit
-    }
+    }*/
 
     // -----------------
     // HTTP REQUEST Retrofit Way and RxJAVA
     // -----------------
     private void executeHttpRequestWithRetrofit() {
-        this.updateUIWhenStartingHTTPRequest();
+        //this.updateUIWhenStartingHTTPRequest();
         NYTCalls.fetchResult(this, "movies");
 
     }
@@ -94,13 +100,14 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     @Override
     public void onResponse(@Nullable Result results) {
         // When getting response, we update UI
+        this.result = results;
         this.adapter.updateCallRetrofitNews(results);
     }
 
     @Override
     public void onFailure() {
         // When getting error, we update UI
-        this.updateUIWhenStopingHTTPRequest("An error happened !");
+        //this.updateUIWhenStopingHTTPRequest("An error happened !");
     }
 
 
@@ -128,7 +135,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     }*/
 
 
-    private void updateUIWhenStartingHTTPRequest(){
+    /*private void updateUIWhenStartingHTTPRequest(){
         this.textView.setText("Downloading...");
     }
 
@@ -143,5 +150,5 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
             stringBuilder.append("-"+ article.getAbstract()+"\n");
         }
         updateUIWhenStopingHTTPRequest(stringBuilder.toString());
-    }
+    }*/
 }
