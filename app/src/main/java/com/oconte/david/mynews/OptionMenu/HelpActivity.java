@@ -1,8 +1,10 @@
-package com.oconte.david.mynews;
+package com.oconte.david.mynews.OptionMenu;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.oconte.david.mynews.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
