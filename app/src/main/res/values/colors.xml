@@ -11,4 +11,5 @@
 
     <color name="textPrimaryColor">#fafafa</color>
     <color name="textPrimaryDark">#b2ebf2</color>
+    <color name="textTitleColor">#000000</color>
 </resources>
