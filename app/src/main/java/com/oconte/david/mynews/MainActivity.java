@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void configureToolbar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setSubtitle("New York Time");
+        getSupportActionBar().setTitle("New York Time");
 
         //afficher le bouton retour
         getSupportActionBar().setHomeButtonEnabled(true);
