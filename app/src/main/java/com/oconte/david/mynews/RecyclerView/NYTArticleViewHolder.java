@@ -15,11 +15,12 @@ import butterknife.ButterKnife;
 
 public class NYTArticleViewHolder extends RecyclerView.ViewHolder {
 
+    // TextView
     @BindView(R.id.fragment_main_title) TextView textView;
     @BindView(R.id.fragment_main_section) TextView textView1;
-    @BindView(R.id.fragment_main_subsection) TextView textView2;
     @BindView(R.id.fragment_main_date) TextView date;
 
+    // ImageView
     @BindView(R.id.fragment_main_image) ImageView imageView;
 
     public NYTArticleViewHolder(View itemView) {
@@ -29,10 +30,14 @@ public class NYTArticleViewHolder extends RecyclerView.ViewHolder {
 
     public void updateWithNYTArticle (Article article) {
         this.textView.setText(article.getTitle());
-        this.textView1.setText(article.getSection());
-        this.textView2.setText(article.getSubsection());
         this.date.setText(ConfigureDate.convertDateFromAPIToDisplay(article.getPublishedDate()));
-
+        String section = article.getSection();
+        String subsection = article.getSubsection();
+        if (subsection.length() <= 0) {
+            this.textView1.setText(section);
+        } else {
+            this.textView1.setText(section + " > " + subsection);
+        }
         Picasso.get()
                 .load(getFirstUrl(article))
                 .resize(60, 60)
@@ -48,8 +53,7 @@ public class NYTArticleViewHolder extends RecyclerView.ViewHolder {
         if (article.getMultimedia() != null && article.getMultimedia().size() > 0) {
             String url = article.getMultimedia().get(0).getUrl();
             return url;
-        }
-
+        } 
         return null;
     }
 }
