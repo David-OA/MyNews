@@ -53,7 +53,7 @@ public class NYTArticleViewHolder extends RecyclerView.ViewHolder {
         if (article.getMultimedia() != null && article.getMultimedia().size() > 0) {
             String url = article.getMultimedia().get(0).getUrl();
             return url;
-        } 
+        }
         return null;
     }
 }
