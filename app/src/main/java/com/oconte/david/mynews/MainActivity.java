@@ -11,6 +11,10 @@ import android.view.MenuItem;
 import com.google.android.material.tabs.TabLayout;
 import com.oconte.david.mynews.OptionMenu.AboutActivity;
 import com.oconte.david.mynews.OptionMenu.HelpActivity;
+import com.oconte.david.mynews.OptionMenu.SearchViewActivity;
+import com.oconte.david.mynews.ViewPager.ViewPagerAdapter;
+
+import java.util.Objects;
 
 import androidx.viewpager.widget.ViewPager;
 import butterknife.ButterKnife;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tabLayout) TabLayout tabLayout;
     @BindView(R.id.pager) ViewPager viewPager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,16 +38,20 @@ public class MainActivity extends AppCompatActivity {
 
         this.configureTabLayout();
 
-        this.configureAndShowMainFragment();
+        //this.configureAndShowMainFragment();
+
+        this.configureAndShowMainFragmentWithViewPager();
+
+        //this.configureAndShowMainFragmentWithViewPager();
+
     }
 
     // -------------------
     // CONFIGURATION
     // -------------------
 
-
     private void configureAndShowMainFragmentWithViewPager() {
-        //viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -58,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * All for the Toolbar
+     */
     protected void configureToolbar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("New York Time");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("My News");
 
-        //afficher le bouton retour
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     /**
@@ -102,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         //View view = toolbar.findViewById(id);
         switch (id) {
+            case R.id.menu_main_activity_search:
+                this.startSearchActivity();
+                return true;
             case R.id.menu_main_activity_notifications:
                 this.startNotificationsActivity();
                 return true;
@@ -116,6 +128,11 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private void startSearchActivity() {
+        Intent intent = new Intent(this, SearchViewActivity.class);
+        startActivity(intent);
     }
 
     private void startNotificationsActivity(){

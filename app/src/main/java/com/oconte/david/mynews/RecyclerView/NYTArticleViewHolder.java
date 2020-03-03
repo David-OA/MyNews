@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.oconte.david.mynews.ConfigureDate;
+import com.oconte.david.mynews.Utils.ConfigureDate;
 import com.oconte.david.mynews.Models.Article;
 import com.oconte.david.mynews.R;
 import com.squareup.picasso.Picasso;
