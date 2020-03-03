@@ -6,19 +6,21 @@
         android:id="@+id/menu_main_activity_search"
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom"
-        android:title="@string/menu_main_activity_search"
-        android:transitionName="@string/animation_main_to_search_zoom"/>
+        android:title="@string/menu_main_activity_search"/>
 
     <item
         android:id="@+id/menu_main_activity_notifications"
         app:showAsAction="never"
         android:title="@string/main_menu_notifications"/>
+
     <item
         android:id="@+id/menu_main_activity_help"
         app:showAsAction="never"
         android:title="@string/main_menu_help"/>
+
     <item
         android:id="@+id/menu_main_activity_about"
+        app:showAsAction="never"
         android:title="@string/main_menu_about"/>
 
 </menu>

@@ -12,37 +12,4 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:background="#4B77BE"
-        android:gravity="center">
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_weight="1"
-        android:background="#E4F1FE"
-        android:gravity="center"
-        android:layout_alignParentLeft="true">
-
-        <Button
-            android:id="@+id/fragment_main_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_corner"
-            android:padding="15dip"
-            android:text="GET DATAS FROM NYT"
-            android:textColor="#FFF"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
 </RelativeLayout>

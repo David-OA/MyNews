@@ -2,7 +2,6 @@ package com.oconte.david.mynews.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.oconte.david.mynews.Multimedium;
 
 import java.util.List;
 

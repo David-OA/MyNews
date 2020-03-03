@@ -2,6 +2,7 @@ package com.oconte.david.mynews.ViewPager;
 
 import com.oconte.david.mynews.MainFragment;
 import com.oconte.david.mynews.MainFragment2;
+import com.oconte.david.mynews.MainFragment3;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
