@@ -17,13 +17,16 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
+
                 return new MainFragment();
             case 1:
-                return new MainFragment();
+
+                return new MainFragment2();
             case 2:
-                return new MainFragment();
+
+                return new MainFragment3();
         }
-        return new MainFragment();
+        return null;
     }
 
     @Nullable

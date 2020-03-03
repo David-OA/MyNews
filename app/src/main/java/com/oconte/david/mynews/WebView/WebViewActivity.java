@@ -21,12 +21,9 @@ import butterknife.ButterKnife;
 public class WebViewActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.web_view_all_new) WebView webView;
 
-    //private Article article;
 
-    private WebView mWebView;
-
-    private Serializable url;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -40,15 +37,6 @@ public class WebViewActivity extends AppCompatActivity {
 
         this.configureWebView();
 
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            // Fonction qui permet l'affichage de la page lorsque tout est chargé (événement onPageFinished)
-
-            public void onPageFinished(WebView view, String url) {
-                findViewById(R.id.web_view_all_new).setVisibility(View.VISIBLE);
-            }
-        });
-
     }
 
 
@@ -57,45 +45,28 @@ public class WebViewActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    /*@Override
-    public void onBackPressed() {
-        if (mWebView.canGoBack()) {
-            mWebView.goBack();
-        } else {
-            super.onBackPressed();
-        }
-    }*/
-
     protected void configureToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("My News");
 
+
         //afficher le bouton retour
-        //getSupportActionBar().setHomeButtonEnabled(true);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     protected void configureWebView() {
-        setContentView(R.layout.activity_web_view);
-        mWebView = (WebView) findViewById(R.id.web_view_all_new);
+        WebView mWebView = (WebView) findViewById(R.id.web_view_all_new);
         mWebView.setWebViewClient(new WebViewClient() {
-            @SuppressLint("NewApi")
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                view.loadUrl(geturlTest());
-                return true;
+            public void onPageFinished(WebView view, String url) {
+                findViewById(R.id.web_view_all_new).setVisibility(View.VISIBLE);
             }
         });
-
-        //mWebView.loadUrl("https://nytimes.com");
-        //mWebView.loadUrl(getGeneralUrl(article));
-        mWebView.loadUrl(geturlTest());
-
+        mWebView.loadUrl(getUrlTest());
     }
 
-    public String geturlTest() {
-        Intent intent = getIntent();
-        Article article = (Article) intent.getSerializableExtra("url");
-        return null;
+    public String getUrlTest() {
+        return getIntent().getStringExtra("url");
     }
 }
