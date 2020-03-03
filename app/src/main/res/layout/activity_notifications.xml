@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextAppearance="@style/ToolBarTheme.TitleText">
+        android:theme="@style/ToolBarTheme">
     </androidx.appcompat.widget.Toolbar>
 
 </LinearLayout>
