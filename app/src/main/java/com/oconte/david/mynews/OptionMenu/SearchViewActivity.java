@@ -10,12 +10,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.oconte.david.mynews.R;
+import com.oconte.david.mynews.Search.ResultSearchActivity;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,8 +25,7 @@ import butterknife.ButterKnife;
 public class SearchViewActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.search_button)
-    Button button;
+    @BindView(R.id.search_button) Button button;
 
     @BindView(R.id.query_term)
     EditText mQueryTerm;

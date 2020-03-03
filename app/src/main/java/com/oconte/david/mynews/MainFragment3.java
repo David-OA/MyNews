@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.oconte.david.mynews.Calls.NYTCalls;
 import com.oconte.david.mynews.Calls.NYTCallsMostPopular;
 import com.oconte.david.mynews.Calls.NYTCallsSports;
-import com.oconte.david.mynews.Models.Article;
 import com.oconte.david.mynews.Models.Result;
 import com.oconte.david.mynews.RecyclerView.NYTArticleAdapter;
 import com.oconte.david.mynews.WebView.ItemClickSupport;
@@ -23,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainFragment extends Fragment implements NYTCalls.Callbacks {
+public class MainFragment3 extends Fragment implements NYTCalls.Callbacks {
 
     // FOR DESIGN
     @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
@@ -31,24 +30,14 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     // FOR DATA
     private NYTArticleAdapter adapter;
 
-    private static final String KEY_POSITION = "position";
-    private int position;
 
     Context context;
 
     Result result;
 
-    public static MainFragment newInstance(int position) {
-        MainFragment frag = new MainFragment();
-        Bundle args = new Bundle();
-        args.putInt(KEY_POSITION, position);
-        frag.setArguments(args);
-
-        return (frag);
-    }
 
 
-    public MainFragment() { }
+    public MainFragment3() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,11 +45,7 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
         ButterKnife.bind(this, view);
         this.configureRecyclerView();
 
-        if (getArguments() != null) {
-            position = getArguments().getInt(KEY_POSITION);
-        }
-
-        this.executeHttpRequestWithRetrofit();
+        this.executeHttpRequestWithRetrofitSports();
 
         this.configureOnClickRecyclerView();
 
@@ -102,8 +87,6 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                         result.articles.get(position);
 
-
-
                         Intent intent = new Intent(getContext(),WebViewActivity.class);
                         intent.putExtra("url", result.articles.get(position).getUrl());
 
@@ -118,6 +101,14 @@ public class MainFragment extends Fragment implements NYTCalls.Callbacks {
     private void executeHttpRequestWithRetrofit() {
         //this.updateUIWhenStartingHTTPRequest();
         NYTCalls.getTopStories(this, "movies");
+    }
+
+    private void executeHttpRequestWithRetrofitSports() {
+        NYTCallsSports.getSports(this, "sports");
+    }
+
+    private void executeHttpRequestWithRetrofitMostPopular() {
+        NYTCallsMostPopular.getMostPopular(this, "viewed");
     }
 
 

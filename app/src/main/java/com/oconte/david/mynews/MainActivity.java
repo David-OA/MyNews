@@ -38,11 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.configureTabLayout();
 
-        //this.configureAndShowMainFragment();
-
         this.configureAndShowMainFragmentWithViewPager();
-
-        //this.configureAndShowMainFragmentWithViewPager();
 
     }
 
