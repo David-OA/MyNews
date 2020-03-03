@@ -24,7 +24,10 @@ public interface NYTService {
     @GET("/svc/search/v2/articlesearch.json?api-key=l0bvAgiwuO57HwCfWGjBaEMWqjUdAMoG")
     Call<Result> getSearchSection(
             @Query("Begin Date") String beginDate,
-            @Query("End Date") String endDate
+            @Query("End Date") String endDate,
+            @Query("fq") String querySection,
+            @Query("q") String queryTerm
+            //@Query("page") int pageNumber,
     );
 
     public static final Retrofit retrofit = new Retrofit.Builder()
